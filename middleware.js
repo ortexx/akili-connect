@@ -11,9 +11,10 @@ exports.route = function (req, res) {
   let host = this.options.host || req.hostname;
   let protocol = this.options.protocol || req.protocol;
   let port = this.options.port || req.headers.host.split(':')[1];
-  let url = this.options.indexUrl || crypto.randomBytes(64).toString('hex');  
+  let url = this.options.indexUrl || crypto.randomBytes(64).toString('hex');
+  let portPath = port? ':' + port: '';
 
-  jsdom.JSDOM.fromURL(protocol + '://' + host + ':' + port + '/' + url, options).then(dom => {
+  jsdom.JSDOM.fromURL(protocol + '://' + host + portPath + '/' + url, options).then(dom => {
     return render(dom, req.originalUrl, this.options).then((html) => {
       res.send(html);
     })
