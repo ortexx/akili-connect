@@ -1,6 +1,6 @@
 # akili-connect
-Library to implement server rendering for [Akili framework]((https://github.com/ortexx/akili)).  
-It is based on [jsdom]((https://github.com/tmpvar/jsdom)).
+Library to implement server rendering for [Akili framework](https://github.com/ortexx/akili).  
+It is based on [jsdom](https://github.com/tmpvar/jsdom).
 
 ## Example
 
