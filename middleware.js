@@ -2,7 +2,7 @@ const jsdom = require('jsdom');
 const render = require('./render');
 const crypto = require('crypto');
 
-exports.route = function (req, res) {
+exports.route = function (req, res, next) {
   let options = Object.assign({}, this.options.jsdomOptions, {
     resources: "usable",
     runScripts: "dangerously"
@@ -18,7 +18,7 @@ exports.route = function (req, res) {
     return render(dom, req.originalUrl, this.options).then((html) => {
       res.send(html);
     })
-  });
+  }).catch(next);
 };
 
 exports.index = function (req, res, next) {
