@@ -1,4 +1,4 @@
-# akili-connect
+# akili-connect [![npm version](https://badge.fury.io/js/akili-connect.svg)](https://badge.fury.io/js/akili-connect)
 Library to implement server rendering for [Akili framework](https://github.com/ortexx/akili).  
 It is based on [jsdom](https://github.com/tmpvar/jsdom).
 
