@@ -10,6 +10,7 @@ module.exports = function(dom, url, _options) {
 
   let start = new Date().getTime();
   let window = dom.window;
+  let isDone = false;
 
   for(let key in polyfill) {
     polyfill[key](window);
@@ -20,14 +21,12 @@ module.exports = function(dom, url, _options) {
 
     return new Promise((resolve) => {
       let interval = setInterval(() => {
-        let isDone = false;
-
         if(options.timeout && new Date().getTime() - start > options.timeout) {
           console.warn('Server rendering has been stopped by timeout');
           isDone = true;
         }
 
-        if(window.Akili && window.Akili.__init) {
+        if(window.Akili && window.Akili.__init !== null) {
           isDone = true;
         }
 
