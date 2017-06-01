@@ -13,7 +13,6 @@
     "express",
     "server",
     "rendering",
-    "rendering",
     "universal"
   ],
   "dependencies": {
