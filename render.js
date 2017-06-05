@@ -5,7 +5,7 @@ let options = {
   onDomInit: (dom) => {}
 };
 
-module.exports = function(dom, url, _options) {
+module.exports = function(dom, url, indexUrl,  _options) {
   options = Object.assign({}, options, _options);
 
   let window = dom.window;
@@ -14,7 +14,7 @@ module.exports = function(dom, url, _options) {
   for(let key in polyfill) {
     polyfill[key](window);
   }
-
+  
   return Promise.resolve(options.onDomInit(dom)).then(() => {
     url && window.history.pushState(null, '', url);
 
@@ -29,6 +29,7 @@ module.exports = function(dom, url, _options) {
 
       window.addEventListener('akili-init', () => {
         timeout && clearTimeout(timeout);
+        window.document.documentElement.setAttribute('akili-server', indexUrl);
         resolve(dom.serialize());
       });
     });
