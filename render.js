@@ -5,37 +5,33 @@ let options = {
   onDomInit: (dom) => {}
 };
 
-module.exports = function(dom, url, _options) {
+module.exports = function(dom, url, indexUrl,  _options) {
   options = Object.assign({}, options, _options);
 
-  let start = new Date().getTime();
   let window = dom.window;
+  let timeout;
 
   for(let key in polyfill) {
     polyfill[key](window);
   }
-
+  
   return Promise.resolve(options.onDomInit(dom)).then(() => {
     url && window.history.pushState(null, '', url);
 
     return new Promise((resolve) => {
-      let interval = setInterval(() => {
-        let isDone = false;
-
-        if(options.timeout && new Date().getTime() - start > options.timeout) {
+      if(options.timeout) {
+        timeout = setTimeout(() => {
+          clearTimeout(timeout);
           console.warn('Server rendering has been stopped by timeout');
-          isDone = true;
-        }
-
-        if(window.Akili && window.Akili.__init) {
-          isDone = true;
-        }
-
-        if(isDone) {
-          clearInterval(interval);
           resolve(dom.serialize());
-        }
-      }, 1);
+        }, options.timeout);
+      }
+
+      window.addEventListener('akili-init', () => {
+        timeout && clearTimeout(timeout);
+        window.document.documentElement.setAttribute('akili-server', indexUrl);
+        resolve(dom.serialize());
+      });
     });
   });
 };

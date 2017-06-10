@@ -7,15 +7,16 @@ exports.route = function (req, res, next) {
     resources: "usable",
     runScripts: "dangerously"
   });
-
+  
   let host = this.options.host || req.hostname;
   let protocol = this.options.protocol || req.protocol;
   let port = this.options.port || req.headers.host.split(':')[1];
   let url = this.options.indexUrl || crypto.randomBytes(64).toString('hex');
-  let portPath = port? ':' + port: '';
-
-  jsdom.JSDOM.fromURL(protocol + '://' + host + portPath + '/' + url, options).then(dom => {
-    return render(dom, req.originalUrl, this.options).then((html) => {
+  
+  url = indexUrl = (protocol + '://' + host) + (port? ':' + port: '') + ('/' + url);
+  
+  jsdom.JSDOM.fromURL(url, options).then(dom => {
+    return render(dom, req.originalUrl, url, this.options).then((html) => {
       res.send(html);
     })
   }).catch(next);

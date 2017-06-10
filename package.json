@@ -4,7 +4,7 @@
   "description": "Library to implement server rendering for Akili framework",
   "main": "./index.js",
   "author": {
-    "name": "Balasyan Alexandr",
+    "name": "Alexandr Balasyan",
     "email": "mywebstreet@gmail.com"
   },
   "keywords": [
@@ -12,7 +12,6 @@
     "connect",
     "express",
     "server",
-    "rendering",
     "rendering",
     "universal"
   ],
