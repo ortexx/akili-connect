@@ -5,22 +5,20 @@ require('./pre');
 const path = require('path');
 const middleware = require('./middleware');
 
-let options = {
-  indexFile: '',
-  indexUrl: '',
-  port: 0,
-  protocol: '',  
-  host: '',
-  timeout: 10000,
-  jsdomOptions: {},
-  onDomInit: (dom) => {}
-};
-
 module.exports = function(_options) {
-  Object.assign(options, _options);
+  let defaults = {
+    indexFile: '',
+    indexUrl: '',
+    port: 0,
+    protocol: '',  
+    host: '',
+    timeout: 10000,
+    jsdomOptions: {},
+    onDomInit: (dom) => {}
+  };
 
   let context = {
-    options: options
+    options: Object.assign({}, defaults, _options)
   };
 
   return {

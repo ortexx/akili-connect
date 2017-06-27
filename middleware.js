@@ -18,8 +18,8 @@ exports.route = function (req, res, next) {
   jsdom.JSDOM.fromURL(url, options).then(dom => {
     return render(dom, req.originalUrl, url, this.options).then((html) => {
       res.send(html);
-    })
-  }).catch(next);
+    });
+  }).catch(next)
 };
 
 exports.index = function (req, res, next) {

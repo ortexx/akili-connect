@@ -1,12 +1,12 @@
 const polyfill = require('./polyfill');
 
-let options = {
-  timeout: 10000,
-  onDomInit: (dom) => {}
-};
-
 module.exports = function(dom, url, indexUrl,  _options) {
-  options = Object.assign({}, options, _options);
+  let defaults = {
+    timeout: 10000,
+    onDomInit: (dom) => {}
+  };
+
+  options = Object.assign({}, defaults, _options);
 
   let window = dom.window;
 
@@ -16,12 +16,10 @@ module.exports = function(dom, url, indexUrl,  _options) {
 
   function close() {
     let html = dom.serialize();
-    let timeout = setTimeout(() => {
-      window.close();
-      global.gc && global.gc();
-      clearTimeout(timeout);
-    }, 1000);    
 
+    window.close();
+    global.gc && global.gc();   
+    
     return html;
   }
   
@@ -41,7 +39,8 @@ module.exports = function(dom, url, indexUrl,  _options) {
 
       window.addEventListener('akili-init', () => {
         timeout && clearTimeout(timeout);
-        window.document.documentElement.setAttribute('akili-server', indexUrl);          
+        window.document.documentElement.setAttribute('akili-server', indexUrl);
+        window.Akili.deinit && window.Akili.deinit();           
         resolve(close());
       });
     });
