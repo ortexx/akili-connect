@@ -58,7 +58,7 @@ polyfill.someFunction = ((window) => {
 ## Client side
 Don't forget to initialize your Akili application on the client side!
 
-```html
+```javascript
 document.addEventListener('DOMContentLoaded', () => {
   Akili.init();
 });
