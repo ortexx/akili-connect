@@ -1,5 +1,5 @@
-exports.scrollIntoView = (window) => {
-  if(!window.HTMLElement.prototype.scrollIntoView) {
-    window.HTMLElement.prototype.scrollIntoView = () => {};
-  }
+exports['Element.prototype.scrollIntoView'] = (window) => {
+  if(!window.Element.prototype.scrollIntoView) {
+    window.Element.prototype.scrollIntoView = () => {};
+  }  
 };

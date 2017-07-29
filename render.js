@@ -6,8 +6,7 @@ module.exports = function(dom, url, indexUrl,  _options) {
     onDomInit: (dom) => {}
   };
 
-  options = Object.assign({}, defaults, _options);
-
+  let options = Object.assign({}, defaults, _options);
   let window = dom.window;
 
   for(let key in polyfill) {
