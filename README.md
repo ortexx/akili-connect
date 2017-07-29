@@ -44,7 +44,7 @@ even if it did not have time to fully load
 You can change window state here before Akili application will be initialized.
 
 ## Polyfills
-You may need missing functions in jsdom or stubs for them.
+You might need missing functions in jsdom or stubs for them.
 You can write it yourself.
 
 ```js
