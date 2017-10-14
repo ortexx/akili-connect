@@ -3,3 +3,7 @@ exports['Element.prototype.scrollIntoView'] = (window) => {
     window.Element.prototype.scrollIntoView = () => {};
   }  
 };
+
+exports['window.scrollTo'] = (window) => {
+  window.scrollTo = () => {};
+};
