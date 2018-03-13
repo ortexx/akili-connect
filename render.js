@@ -14,11 +14,9 @@ module.exports = function(dom, url, indexUrl,  _options) {
   }
 
   function close() {
-    let html = dom.serialize();
-
+    const html = dom.serialize();
     window.close();
-    global.gc && global.gc();   
-    
+    global.gc && global.gc();
     return html;
   }
   
@@ -36,10 +34,11 @@ module.exports = function(dom, url, indexUrl,  _options) {
         }, options.timeout);
       }
 
-      window.addEventListener('akili-init', () => {
+      window.addEventListener('akili-init', () => {        
         timeout && clearTimeout(timeout);
-        window.document.documentElement.setAttribute('akili-server', indexUrl);
-        window.Akili.deinit && window.Akili.deinit();           
+        window.Akili.deinit && window.Akili.deinit(); 
+        const serverData = JSON.stringify({ html: window.AKILI_CLIENT.html});
+        window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
         resolve(close());
       });
     });
