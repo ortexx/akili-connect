@@ -56,17 +56,12 @@ polyfill.someFunction = ((window) => {
 ```
 
 ## Client side
-You need to load/import the framework first in your application to prevent possible conflicts.
-
-```javascript
-import Akili from 'akili';
-// anything else
-```
-
-And don't forget to initialize your Akili application on the client side!
+Don't forget to initialize your Akili application on the client side!  
+Server sends the part of html to replace only [the root](https://akilijs.com/docs/compilation) element content.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
-  Akili.init();
+  Akili.init(document.body).catch((err) => console.error(err));;
 });
 ```
+
