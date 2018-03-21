@@ -36,7 +36,7 @@ module.exports = function(dom, url, indexUrl,  _options) {
 
       window.addEventListener('akili-init', () => {        
         timeout && clearTimeout(timeout);
-        window.Akili.deinit && window.Akili.deinit(); 
+        window.Akili.clearGlobals && window.Akili.clearGlobals();
         const serverData = JSON.stringify({ html: window.AKILI_CLIENT.html});
         window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
         resolve(close());

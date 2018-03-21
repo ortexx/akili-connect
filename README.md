@@ -8,10 +8,9 @@ It is based on [jsdom](https://github.com/tmpvar/jsdom).
 const akiliConnect = require('akili-connect');
 const express = require('express');
 const path = require('path');
-
 const app = express();
 
-let middleware = akiliConnect({
+const middleware = akiliConnect({
   indexFile: path.join(__dirname, 'public/templates/index.html')
 });
 
