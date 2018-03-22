@@ -29,7 +29,7 @@ module.exports = function(dom, url, indexUrl,  _options) {
       if(options.timeout) {
         timeout = setTimeout(() => {
           clearTimeout(timeout);
-          console.warn('Server rendering has been stopped by timeout');
+          console.warn('Server-side rendering has been stopped by timeout');
           resolve(close());
         }, options.timeout);
       }

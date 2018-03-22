@@ -1,7 +1,7 @@
 {
   "name": "akili-connect",
   "version": "0.6.0",
-  "description": "Library to implement server rendering for Akili framework",
+  "description": "Library to implement server-side rendering for Akili framework",
   "main": "./index.js",
   "author": {
     "name": "Alexandr Balasyan",
