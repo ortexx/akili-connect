@@ -29,7 +29,7 @@ module.exports = function(dom, url, indexUrl,  _options) {
       if(options.timeout) {
         timeout = setTimeout(() => {
           clearTimeout(timeout);
-          console.warn('Server-side rendering has been stopped by timeout');
+          console.warn('Server rendering has been stopped by timeout');
           resolve(close());
         }, options.timeout);
       }
@@ -37,7 +37,7 @@ module.exports = function(dom, url, indexUrl,  _options) {
       window.addEventListener('akili-init', () => {        
         timeout && clearTimeout(timeout);
         window.Akili.clearGlobals && window.Akili.clearGlobals();
-        const serverData = JSON.stringify({ html: window.AKILI_CLIENT.html});
+        const serverData = JSON.stringify(window.AKILI_CLIENT);
         window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
         resolve(close());
       });
