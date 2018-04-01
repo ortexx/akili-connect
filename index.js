@@ -12,7 +12,7 @@ module.exports = function(_options) {
     port: 0,
     protocol: '',  
     host: '',
-    timeout: 10000,
+    timeout: 5000,
     jsdomOptions: {},
     onDomInit: (dom) => {}
   };
@@ -26,4 +26,3 @@ module.exports = function(_options) {
     index: middleware.index.bind(context)
   }
 };
-

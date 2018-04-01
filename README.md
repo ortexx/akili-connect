@@ -36,7 +36,7 @@ and __index__ middleware to get index file.
 * {number} [__port__] - the application port, by default it will be set automatically
 * {string} [__protocol__] - the application port, by default it will be set automatically 
 * {string} [__host__] - the application host, by default it will be set automatically 
-* {number} [__timeout__=10000] - The time after which the application will be rendered in any case, 
+* {number} [__timeout__=5000] - The time after which the application will be rendered in any case, 
 even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
 * {function} [__onDomInit__] - the function which will be called after dom creation. 

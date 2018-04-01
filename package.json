@@ -1,6 +1,6 @@
 {
   "name": "akili-connect",
-  "version": "0.6.4",
+  "version": "0.6.6",
   "description": "Library to implement server-side rendering for Akili framework",
   "main": "./index.js",
   "author": {

@@ -1,9 +1,9 @@
 const polyfill = require('./polyfill');
 
-module.exports = function(dom, url, indexUrl,  _options) {
-  let defaults = {
-    timeout: 10000,
-    onDomInit: (dom) => {}
+module.exports = function(dom, url, _options) {
+  const defaults = {
+    timeout: 5000,
+    onDomInit: dom => {}
   };
 
   let options = Object.assign({}, defaults, _options);
@@ -14,13 +14,14 @@ module.exports = function(dom, url, indexUrl,  _options) {
   }
 
   function close() {
+    window.Akili.clearGlobals && window.Akili.clearGlobals();
     const html = dom.serialize();
     window.close();
     global.gc && global.gc();
     return html;
   }
   
-  return Promise.resolve(options.onDomInit(dom)).then(() => {
+  return Promise.resolve(options.onDomInit(dom)).then(() => {    
     url && window.history.pushState(null, '', url);
 
     return new Promise((resolve) => {
@@ -36,7 +37,6 @@ module.exports = function(dom, url, indexUrl,  _options) {
 
       window.addEventListener('akili-init', () => {        
         timeout && clearTimeout(timeout);
-        window.Akili.clearGlobals && window.Akili.clearGlobals();
         const serverData = JSON.stringify(window.AKILI_CLIENT);
         window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
         resolve(close());
