@@ -10,7 +10,7 @@ exports.route = function (req, res, next) {
   
   let host = this.options.host || req.hostname;
   let protocol = this.options.protocol || (req.headers['x-forwarded-proto']? 'https': req.protocol);
-  let port = this.options.port || req.headers.host.split(':')[1];
+  let port = this.options.port || req.headers.host.split(':')[1] || req.connection.localPort;
   let url = this.options.indexUrl || crypto.randomBytes(24).toString('hex');  
   url = (protocol + '://' + host) + (port? ':' + port: '') + ('/' + url);
   
