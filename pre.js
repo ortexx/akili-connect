@@ -1,3 +1,5 @@
+"use strict";
+
 const df = require('jsdom/lib/jsdom/browser/documentfeatures');
 const applyDocumentFeatures = df.applyDocumentFeatures;
 
