@@ -31,16 +31,20 @@ and __index__ middleware to get index file.
 
 ## Options
 
-* {string} __indexFile__ - path to index file
-* {string} [__indexUrl__] - index middleware url (if you want to change __*__ to something special)
-* {number} [__port__] - the application port, by default it will be set automatically
-* {string} [__protocol__] - the application port, by default it will be set automatically 
-* {string} [__host__] - the application host, by default it will be set automatically 
-* {number} [__timeout__=5000] - The time after which the application will be rendered in any case, 
+* {string} [__indexFile__] - path to index file. Required if you going to use __index__ middleware
+* {string} [__indexUrl__] - index middleware url 
+* {number} [__port__] - application port
+* {string} [__protocol__] - application protocol
+* {string} [__host__] - application host 
+* {number} [__timeout__=5000] - time after which the application will be rendered in any case, 
 even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
-* {function} [__onDomInit__] - the function which will be called after dom creation. 
+* {function} [__onDomInit__] - called after dom creation. 
 You can change window state here before Akili application will be initialized.
+* {function} [__beforeSerialization__] - called before DOM serialization. 
+You can get __window__ object and do anything with it last time.
+* {function} [__afterSerialization__] - called after DOM serialization. 
+You can get the actual html and change it last time. It is nesessary to return a new html.
 
 ## Polyfills
 You might need missing functions in jsdom or stubs for them.

@@ -16,8 +16,10 @@ module.exports = function(dom, url, _options) {
   }
 
   function close() {
-    window.Akili.clearGlobals && window.Akili.clearGlobals();
+    options.beforeSerialization && options.beforeSerialization(window);
+    window.Akili.clearGlobals && window.Akili.clearGlobals();    
     const html = dom.serialize();
+    options.afterSerialization && (html = options.afterSerialization(html));
     window.close();
     global.gc && global.gc();
     return html;
