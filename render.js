@@ -17,7 +17,7 @@ module.exports = function(dom, url, _options) {
 
   function close() {
     options.beforeSerialization && options.beforeSerialization(window);
-    window.Akili.clearGlobals && window.Akili.clearGlobals();    
+    window.Akili && window.Akili.clearGlobals && window.Akili.clearGlobals();    
     const html = dom.serialize();
     options.afterSerialization && (html = options.afterSerialization(html));
     window.close();
