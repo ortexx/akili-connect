@@ -16,8 +16,25 @@ exports.route = function (req, res, next) {
   let port = this.options.port || req.connection.localPort;  
   let serverUrl = urlLib.format({ hostname: host, port: port, protocol: protocol });
   let url = this.options.indexUrl || serverUrl + '/' + crypto.randomBytes(24).toString('hex').split('').join('_-/');
-  
-  jsdom.JSDOM.fromURL(url, options).then(dom => {
+
+  Promise.resolve().then(() => {
+    if(!options.cookieJar) {
+      return new Promise((resolve, reject) => {
+        const jar = new jsdom.CookieJar();
+        options.cookieJar = jar; 
+
+        jar.setCookie(req.headers.cookie, serverUrl, (err) => {
+          if(err) {
+            return reject(err);
+          }
+
+          resolve();
+        });
+      });
+    }
+  }).then(() => {
+    return jsdom.JSDOM.fromURL(url, options);
+  }).then(dom => {
     return render(dom, req.originalUrl, this.options).then(html => res.send(html));
   }).catch(next);
 };
