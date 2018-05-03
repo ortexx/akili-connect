@@ -39,12 +39,12 @@ and __index__ middleware to get index file.
 * {number} [__timeout__=5000] - time after which the application will be rendered in any case, 
 even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
-* {function} [__onDomInit__] - called after dom creation. 
-You can change window state here before Akili application will be initialized.
+* {function} [__onDomInit__] - called after DOM creation. 
+You can change window state here before Akili application is initialized.
 * {function} [__beforeSerialization__] - called before DOM serialization. 
 You can get __window__ object and do anything with it last time.
 * {function} [__afterSerialization__] - called after DOM serialization. 
-You can get the actual html and change it last time. It is nesessary to return a new html.
+You can get the actual html and change it last time. You have to return a new html string.
 
 ## Polyfills
 You might need missing functions in jsdom or stubs for them.
