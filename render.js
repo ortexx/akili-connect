@@ -10,6 +10,7 @@ module.exports = function(dom, url, _options) {
 
   let options = Object.assign({}, defaults, _options);
   let window = dom.window;
+  window.AKILI_SSR = true;
 
   for(let key in polyfill) {
     polyfill[key](window);

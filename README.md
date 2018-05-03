@@ -53,9 +53,9 @@ You can write it yourself.
 ```js
 const polyfill = require('akili-connect/polyfill');
 
-polyfill.someFunction = ((window) => {
+polyfill.someFunction = (window) => {
   window.someFunction = () => {};
-});
+};
 ```
 
 ## Client side
@@ -66,5 +66,14 @@ Server sends the part of html to replace only [the root](https://akilijs.com/doc
 document.addEventListener('DOMContentLoaded', () => {
   Akili.init(document.body).catch((err) => console.error(err));;
 });
+```
+
+```javascript
+if(window.AKILI_SSR) {
+  // the server-side rendering
+}
+else {
+  // the client-side rendering
+}
 ```
 
