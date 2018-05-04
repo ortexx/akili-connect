@@ -23,7 +23,7 @@ exports.route = function (req, res, next) {
         const jar = new jsdom.CookieJar();
         options.cookieJar = jar; 
 
-        jar.setCookie(req.headers.cookie, serverUrl, (err) => {
+        jar.setCookie(req.headers.cookie || '', serverUrl, (err) => {
           if(err) {
             return reject(err);
           }
