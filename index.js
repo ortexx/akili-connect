@@ -1,8 +1,5 @@
 "use strict";
 
-require('./pre');
-
-const path = require('path');
 const middleware = require('./middleware');
 
 module.exports = function(_options) {
@@ -14,7 +11,7 @@ module.exports = function(_options) {
     host: '',
     timeout: 5000,
     jsdomOptions: {},
-    onDomInit: (dom) => {}
+    onDomInit: () => {}
   };
 
   let context = {
