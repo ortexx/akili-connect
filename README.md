@@ -36,7 +36,6 @@ and __index__ middleware to get index file.
 * {number} [__port__] - application port
 * {string} [__protocol__] - application protocol
 * {string} [__host__] - application host 
-* {number} [__timeout__=5000] - time after which the application will be rendered in any case, 
 even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
 * {function} [__onDomInit__] - called after DOM creation. 
@@ -77,3 +76,11 @@ else {
 }
 ```
 
+If you want to remove some elements during the rendering on the server side you can add attribute __no-ssr__ to them.
+
+```html
+<app>
+  <div no-ssr>it's useless for SEO</div>
+  <div>it's necessary</div>
+</app>  
+```

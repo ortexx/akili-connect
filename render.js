@@ -4,19 +4,23 @@ const polyfill = require('./polyfill');
 
 module.exports = function(dom, url, _options) {
   const defaults = {
-    timeout: 5000,
     onDomInit: dom => {}
   };
 
-  let options = Object.assign({}, defaults, _options);
-  let window = dom.window;
+  const options = Object.assign({}, defaults, _options);
+  const window = dom.window;
   window.AKILI_SSR = true;
-
+  
   for(let key in polyfill) {
     polyfill[key](window);
   }
 
   function close() {
+    if(window.AKILI_CLIENT && window.Akili && window.Akili.__root) {
+      const serverData = JSON.stringify(window.AKILI_CLIENT);
+      window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
+    }
+    
     options.beforeSerialization && options.beforeSerialization(window);
     window.Akili && window.Akili.clearGlobals && window.Akili.clearGlobals();    
     const html = dom.serialize();
@@ -29,23 +33,8 @@ module.exports = function(dom, url, _options) {
   return Promise.resolve(options.onDomInit(dom)).then(() => {    
     url && window.history.pushState(null, '', url);
 
-    return new Promise((resolve) => {
-      let timeout;
-
-      if(options.timeout) {
-        timeout = setTimeout(() => {
-          clearTimeout(timeout);
-          console.warn('Server rendering has been stopped by timeout');
-          resolve(close());
-        }, options.timeout);
-      }
-
-      window.addEventListener('akili-init', () => {        
-        timeout && clearTimeout(timeout);
-        const serverData = JSON.stringify(window.AKILI_CLIENT);
-        window.Akili.__root.innerHTML += `\n<script>window.AKILI_SERVER=${serverData}</script>\n`;
-        resolve(close());
-      });
+    return new Promise(resolve => {
+      window.addEventListener('akili-init', () => resolve(close()));
     });
   });
 };

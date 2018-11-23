@@ -2,20 +2,19 @@
 
 const middleware = require('./middleware');
 
-module.exports = function(_options) {
+module.exports = function(options) {
   let defaults = {
     indexFile: '',
     indexUrl: '',
     port: 0,
     protocol: '',  
     host: '',
-    timeout: 5000,
     jsdomOptions: {},
     onDomInit: () => {}
   };
 
   let context = {
-    options: Object.assign({}, defaults, _options)
+    options: Object.assign({}, defaults, options)
   };
 
   return {
