@@ -11,7 +11,7 @@ exports.route = function (req, res, next) {
     runScripts: "dangerously"
   });
   
-  let host = this.options.host || req.connection.localAddress.replace(/^::1/, '127.0.0.1').replace(/^::ffff:/, '');
+  let host = this.options.host || (req.connection.localAddress || '').replace(/^::1/, '127.0.0.1').replace(/^::ffff:/, '');
   let protocol = this.options.protocol || req.connection.encrypted? 'https': 'http';
   let port = this.options.port || req.connection.localPort;  
   let serverUrl = urlLib.format({ hostname: host, port: port, protocol: protocol });
