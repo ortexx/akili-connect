@@ -26,7 +26,6 @@ module.exports = function(dom, url, _options) {
     const html = dom.serialize();
     options.afterSerialization && (html = options.afterSerialization(html));
     window.close();
-    global.gc && global.gc();
     return html;
   }
   
