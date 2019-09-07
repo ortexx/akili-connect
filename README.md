@@ -38,6 +38,7 @@ and __index__ middleware to get index file.
 * {string} [__host__] - application host 
 even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
+* {string|number} [__gc__="300mb"] - use gc starting with the specifed bytes of memory usage (you must run node with --expose-gc)
 * {function} [__onDomInit__] - called after DOM creation. 
 You can change window state here before Akili application is initialized.
 * {function} [__beforeSerialization__] - called before DOM serialization. 

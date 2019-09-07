@@ -1,5 +1,3 @@
-"use strict";
-
 const jsdom = require('jsdom');
 const render = require('./render');
 const crypto = require('crypto');

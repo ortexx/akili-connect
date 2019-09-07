@@ -1,5 +1,3 @@
-"use strict";
-
 const polyfill = require('./polyfill');
 
 module.exports = function(dom, url, _options) {
@@ -25,7 +23,11 @@ module.exports = function(dom, url, _options) {
     window.Akili && window.Akili.clearGlobals && window.Akili.clearGlobals();    
     const html = dom.serialize();
     options.afterSerialization && (html = options.afterSerialization(html));
+    delete window.AKILI_CLIENT;
+    delete window.AKILI_SSR;
+    delete window.Akili;
     window.close();
+    global.gc && options.gc && process.memoryUsage().heapUsed > options.gc && global.gc();
     return html;
   }
   

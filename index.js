@@ -1,8 +1,7 @@
-"use strict";
-
 const middleware = require('./middleware');
+const bytes = require('bytes');
 
-module.exports = function(options) {
+module.exports = function(options = {}) {
   let defaults = {
     indexFile: '',
     indexUrl: '',
@@ -10,6 +9,7 @@ module.exports = function(options) {
     protocol: '',  
     host: '',
     jsdomOptions: {},
+    gc: bytes(options.gc || '300mb'),
     onDomInit: () => {}
   };
 
