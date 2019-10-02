@@ -31,19 +31,18 @@ and __index__ middleware to get index file.
 
 ## Options
 
-* {string} [__indexFile__] - path to index file. Required if you going to use __index__ middleware
+* {string} [__indexFile__] - path to the index file. Required if you are going to use __index__ middleware
 * {string} [__indexUrl__] - index middleware url 
 * {number} [__port__] - application port
 * {string} [__protocol__] - application protocol
 * {string} [__host__] - application host 
-even if it did not have time to fully load
 * {Object} [__jsdomOptions__] - jsdom options 
 * {string|number} [__gc__="300mb"] - use gc starting with the specifed bytes of memory usage (you must run node with --expose-gc)
 * {function} [__onDomInit__] - called after DOM creation. 
-You can change window state here before Akili application is initialized.
-* {function} [__beforeSerialization__] - called before DOM serialization. 
-You can get __window__ object and do anything with it last time.
-* {function} [__afterSerialization__] - called after DOM serialization. 
+You can change window state here before the Akili application is initialized.
+* {function} [__beforeSerialization__] - called before the DOM serialization. 
+You can get the __window__ object and do anything with it last time.
+* {function} [__afterSerialization__] - called after the DOM serialization. 
 You can get the actual html and change it last time. You have to return a new html string.
 
 ## Polyfills

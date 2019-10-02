@@ -20,18 +20,15 @@ module.exports = function(dom, url, _options) {
     }
     
     options.beforeSerialization && options.beforeSerialization(window);
-    window.Akili && window.Akili.clearGlobals && window.Akili.clearGlobals();    
     const html = dom.serialize();
     options.afterSerialization && (html = options.afterSerialization(html));
-    delete window.AKILI_CLIENT;
-    delete window.AKILI_SSR;
-    delete window.Akili;
+    window.Akili && window.Akili.destroy(); 
     window.close();
     global.gc && options.gc && process.memoryUsage().heapUsed > options.gc && global.gc();
     return html;
   }
   
-  return Promise.resolve(options.onDomInit(dom)).then(() => {    
+  return Promise.resolve(options.onDomInit(dom)).then(() => {
     url && window.history.pushState(null, '', url);
 
     return new Promise(resolve => {

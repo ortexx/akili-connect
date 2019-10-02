@@ -1,6 +1,6 @@
 {
   "name": "akili-connect",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Library to implement server-side rendering for Akili framework",
   "main": "./index.js",
   "author": {
@@ -26,6 +26,6 @@
     "url": "https://github.com/ortexx/akili-connect"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   }
 }
