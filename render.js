@@ -24,7 +24,6 @@ module.exports = function(dom, url, _options) {
     options.afterSerialization && (html = options.afterSerialization(html));
     window.Akili && window.Akili.destroy(); 
     window.close();
-    global.gc && options.gc && process.memoryUsage().heapUsed > options.gc && global.gc();
     return html;
   }
   

@@ -1,6 +1,6 @@
 {
   "name": "akili-connect",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Library to implement server-side rendering for Akili framework",
   "main": "./index.js",
   "author": {
@@ -17,8 +17,7 @@
     "universal"
   ],
   "dependencies": {
-    "bytes": "^3.1.0",
-    "jsdom": "^15.1.1"
+    "jsdom": "^15.2.0"
   },
   "license": "MIT",
   "repository": {

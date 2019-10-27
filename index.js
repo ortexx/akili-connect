@@ -9,7 +9,6 @@ module.exports = function(options = {}) {
     protocol: '',  
     host: '',
     jsdomOptions: {},
-    gc: bytes(options.gc || '300mb'),
     onDomInit: () => {}
   };
 
