@@ -1,10 +1,10 @@
 {
   "name": "akili-connect",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Library to implement server-side rendering for Akili framework",
   "main": "./index.js",
   "author": {
-    "name": "Alexandr Balasyan",
+    "name": "Alexander Balasyan",
     "email": "mywebstreet@gmail.com"
   },
   "homepage": "http://akilijs.com",
@@ -17,7 +17,7 @@
     "universal"
   ],
   "dependencies": {
-    "jsdom": "^15.2.0"
+    "jsdom": "^16.2.2"
   },
   "license": "MIT",
   "repository": {
