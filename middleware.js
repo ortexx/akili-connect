@@ -16,12 +16,11 @@ exports.route = function (req, res, next) {
   let url = this.options.indexUrl || serverUrl + '/' + crypto.randomBytes(24).toString('hex').split('').join('_-/');
 
   Promise.resolve().then(() => {
-    if(!options.cookieJar) {
+    if(!options.cookieJar && req.headers.cookie) {
       return new Promise((resolve, reject) => {
         const jar = new jsdom.CookieJar();
-        options.cookieJar = jar; 
-
-        jar.setCookie(req.headers.cookie || '', serverUrl, (err) => {
+        options.cookieJar = jar;
+        jar.setCookie(req.headers.cookie, serverUrl, (err) => {
           if(err) {
             return reject(err);
           }
